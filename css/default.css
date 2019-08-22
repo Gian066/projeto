@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+
+body {
+    font-family: 'Quicksand', serif;
+}
+
+#navbar {
+    background-color: #4285f4;
+}
+
+.dropdown-menu, .dropdown-menu a {
+    background-color: #4285f4;
+    color: white;
+}

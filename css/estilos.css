@@ -1,0 +1,41 @@
+#barra_procura {
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+}
+
+#barra_procura input {
+    text-align: center;
+}
+
+#lista {
+    margin: 40px 20px;
+}
+
+
+@keyframes editar_p_salvar {
+    0% {color: transparent;}
+    100% {color: #269e46;}
+  }
+  
+.icons-lista {
+    float: right;
+    margin-right: 10px;
+    animation-duration: 0.7s;
+}
+
+.delete-icon {
+    color: rgb(192, 51, 51);
+}
+
+.input-lista {
+    border: none;
+  display: inline;
+  font-family: inherit;
+  font-size: inherit;
+  padding: none;
+  width: auto;
+  background-color: transparent;
+}
