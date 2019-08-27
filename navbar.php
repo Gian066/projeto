@@ -19,7 +19,7 @@
             </a>
             <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item waves-effect waves-light" href="#">Professor</a>
-              <a class="dropdown-item waves-effect waves-light" href="disciplina.php">Disciplina</a>
+              <a class="dropdown-item waves-effect waves-light" href="disciplina/index.php">Disciplina</a>
             </div>
           </li>
         </ul>
