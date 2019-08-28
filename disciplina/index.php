@@ -23,8 +23,8 @@
     
 
     <!-- search bar -->
-    <div id="barra_procura" >  
-        <input class="form-control" type="text" placeholder="Pesquisar" aria-label="Search">
+    <div id="barra_pesquisa" >  
+        <input value="" id="pesquisa" class="form-control" type="text" placeholder="Pesquisar" aria-label="Search">
     </div>
     
     
@@ -43,7 +43,8 @@
                 $con = conexao();
                 
                 $result = buscar($con, "disciplina");
-                
+                $resultados = [];
+
                 while($linha = $result->fetch_array()) {
                     $id = $linha["id"];
                     $nome = $linha["nome"];
@@ -71,6 +72,11 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="../js/ajudantes.js"></script>
+    <script>
+        $("#pesquisa").on('change', () => {
+            filtrar_lista($("#pesquisa")[0].value)
+        })
+    </script>
 </body>
 
 </html>

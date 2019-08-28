@@ -1,11 +1,11 @@
-#barra_procura {
+#barra_pesquisa {
     margin-left: 20%;
     margin-right: 20%;
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
-#barra_procura input {
+#pesquisa {
     text-align: center;
 }
 
@@ -68,7 +68,12 @@ div.icons-lista {
 
 @media (min-width: 375px) and (max-width: 667px){
     /* Para usuarios iphone */
-#lista ul{
-    font-size: 13px;
+    #lista ul{
+        font-size: 13px;
+    }
 }
+
+.invisivel {
+    display: none;
+    visibility: hidden;
 }

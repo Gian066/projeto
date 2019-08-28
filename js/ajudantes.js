@@ -53,3 +53,17 @@ function del_selecionados() {
         }
     }
 }
+
+function filtrar_lista(txt) {
+    let lista = document.getElementById('lista').children[1].children
+    txt = txt.toUpperCase()
+    console.log(txt)
+    for(linha of lista) {
+        
+        if(!linha.children['campo'].value.includes(txt)) {
+            linha.className += " invisivel"
+        } else {
+            linha.className = linha.className.replace(" invisivel", "")
+        }
+    }
+}
