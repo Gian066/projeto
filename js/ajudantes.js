@@ -22,22 +22,14 @@ function deletar_linha(id, sem_alert) {
         document.getElementById(id).remove()
         $.ajax({
             url: "deletar.php?id='" + id + "'",
-            type: 'GET',
-
-            success: function (output) {
-                console.log("apagou, boa!!!!!!!!!")
-            }
+            type: 'GET'
         });
     } else {
         if (confirm("Você quer realmente apagar?")) {
             document.getElementById(id).remove()
             $.ajax({
                 url: "deletar.php?id='" + id + "'",
-                type: 'GET',
-
-                success: function (output) {
-                    console.log("apagou, boa!!!!!!!!!")
-                }
+                type: 'GET'
             });
         }
     }
@@ -48,22 +40,34 @@ function del_selecionados() {
 
     for (let linha of lista) {
         if (linha.children['checkbox'].checked) {
-            console.log("------------")
             deletar_linha(linha.id, true)
         }
     }
 }
 
-function filtrar_lista(txt) {
+function filtrar_lista(texto_pesquisa) {
     let lista = document.getElementById('lista').children[1].children
-    txt = txt.toUpperCase()
-    console.log(txt)
-    for(linha of lista) {
-        
-        if(!linha.children['campo'].value.includes(txt)) {
+    texto_pesquisa = texto_pesquisa.toUpperCase()
+    texto_pesquisa = remover_acentos(texto_pesquisa)
+    for (linha of lista) {
+        linha.className = linha.className.replace(" invisivel", "")
+        const texto_campo = remover_acentos(linha.children['campo'].value)
+        if (!texto_campo.includes(texto_pesquisa)) {
             linha.className += " invisivel"
-        } else {
-            linha.className = linha.className.replace(" invisivel", "")
         }
     }
+}
+
+function remover_acentos(str) {
+    var accents = 'ÀÁÂÃÄÅàáâãäåÒÓÔÕÕÖØòóôõöøÈÉÊËèéêëðÇçÐÌÍÎÏìíîïÙÚÛÜùúûüÑñŠšŸÿýŽž';
+    var accentsOut = "AAAAAAaaaaaaOOOOOOOooooooEEEEeeeeeCcDIIIIiiiiUUUUuuuuNnSsYyyZz";
+    str = str.split('');
+    var strLen = str.length;
+    var i, x;
+    for (i = 0; i < strLen; i++) {
+        if ((x = accents.indexOf(str[i])) != -1) {
+            str[i] = accentsOut[x];
+        }
+    }
+    return str.join('');
 }
