@@ -14,30 +14,52 @@ function editar_campos(id) {
         icone.innerText = "edit"
         icone.style.color = "black"
 
-    }
-}
-
-function deletar_linha(id) {
-    if (confirm("Você quer realmente apagar?")) {
-        document.getElementById(id).remove()
+        let id = campo.id
+        let novoNome = campo.value
         $.ajax({
-            url: "deletar.php?id='" + id + "'",
-            type: 'GET'
+            method: 'POST',
+            url: 'editar.php',
+            data: { id: id, nome: novoNome }
         });
     }
-
 }
+
+// function deletar_linha(id) {
+//     if (confirm("Você quer realmente apagar?")) {
+//         document.getElementById(id).remove()
+//         $.ajax({
+//             url: "deletar.php?id='" + id + "'",
+//             type: 'GET'
+//         });
+//     }
+
+// }
 
 function del_selecionados() {
     let lista = document.getElementById('lista').children[1].children
     if (confirm("Você quer realmente excluir os campos selecionados?")) {
-        $.each($("input:checked"), (id, campo) => {
-            document.getElementById(id).remove()
+        $.each($("input:checked"), (id_campo, campo) => {
+            id = campo.parentNode.id
+            campo.parentNode.remove()
+            console.log(id)
             $.ajax({
                 url: "deletar.php?id='" + id + "'",
                 type: 'GET'
             });
         });
+    }
+}
+
+function inserir_linha() {
+    const nome = $("#nova_disciplina")[0].value.toUpperCase()
+
+    if (nome.length > 0) {
+        $.ajax({
+            method: 'POST',
+            url: "inserir.php",
+            data: { nome: nome }
+        })
+        $('#sucesso').click()
     }
 }
 

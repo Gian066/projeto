@@ -12,7 +12,7 @@
     }
 
     function buscar($con, $tabela) {
-        $sql = "SELECT * FROM $tabela WHERE 1";
+        $sql = "SELECT * FROM $tabela WHERE 1 ORDER BY nome";
         $result = $con->query($sql);
 
         return $result;
@@ -22,5 +22,11 @@
         $sql = "DELETE FROM $tabela WHERE id=$id";
         $con->query($sql);
     }
-   
+    
+    
+
+    function executar($con, $sql) {
+        $con->query($sql);
+
+    }
  ?>

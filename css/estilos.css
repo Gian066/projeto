@@ -45,8 +45,9 @@
   font-family: inherit;
   font-size: inherit;
   padding: none;
-  width: calc(100% - 90px);
+  width: calc(100% - 50px);
   background-color: transparent;
+  text-transform: uppercase;
 }
 
 .list-group-item input, .icons-lista {
@@ -55,16 +56,11 @@
 
 div.icons-lista {
     float: right;
-    width: 54px;
+    width: 30px;
 }
 
 #subtitulo {
     display:inline-block;
-}
-#delete-all {
-    float: right;
-    width: 47px;
-    cursor: pointer;
 }
 
 @media (min-width: 375px) and (max-width: 667px){
@@ -77,4 +73,17 @@ div.icons-lista {
 .invisivel {
     display: none;
     visibility: hidden;
+}
+
+#form_adicionar {
+    position: fixed;
+    z-index: 2;
+    margin-top: 20vh;
+    margin-left: calc(50% - 400px);
+    width: 800px;
+}
+
+.alert-success {
+    width: 80%;
+    left: 10%;
 }
