@@ -17,57 +17,45 @@ function editar_campos(id) {
     }
 }
 
-function deletar_linha(id, sem_alert) {
-    if (sem_alert) {
+function deletar_linha(id) {
+    if (confirm("Você quer realmente apagar?")) {
         document.getElementById(id).remove()
         $.ajax({
             url: "deletar.php?id='" + id + "'",
             type: 'GET'
         });
-    } else {
-        if (confirm("Você quer realmente apagar?")) {
+    }
+
+}
+
+function del_selecionados() {
+    let lista = document.getElementById('lista').children[1].children
+    if (confirm("Você quer realmente excluir os campos selecionados?")) {
+        $.each($("input:checked"), (id, campo) => {
             document.getElementById(id).remove()
             $.ajax({
                 url: "deletar.php?id='" + id + "'",
                 type: 'GET'
             });
-        }
-    }
-}
-
-function del_selecionados() {
-    let lista = document.getElementById('lista').children[1].children
-
-    for (let linha of lista) {
-        if (linha.children['checkbox'].checked) {
-            deletar_linha(linha.id, true)
-        }
+        });
     }
 }
 
 function filtrar_lista(texto_pesquisa) {
-    let lista = document.getElementById('lista').children[1].children
     texto_pesquisa = texto_pesquisa.toUpperCase()
-    texto_pesquisa = remover_acentos(texto_pesquisa)
-    for (linha of lista) {
-        linha.className = linha.className.replace(" invisivel", "")
-        const texto_campo = remover_acentos(linha.children['campo'].value)
-        if (!texto_campo.includes(texto_pesquisa)) {
-            linha.className += " invisivel"
-        }
-    }
-}
 
-function remover_acentos(str) {
-    var accents = 'ÀÁÂÃÄÅàáâãäåÒÓÔÕÕÖØòóôõöøÈÉÊËèéêëðÇçÐÌÍÎÏìíîïÙÚÛÜùúûüÑñŠšŸÿýŽž';
-    var accentsOut = "AAAAAAaaaaaaOOOOOOOooooooEEEEeeeeeCcDIIIIiiiiUUUUuuuuNnSsYyyZz";
-    str = str.split('');
-    var strLen = str.length;
-    var i, x;
-    for (i = 0; i < strLen; i++) {
-        if ((x = accents.indexOf(str[i])) != -1) {
-            str[i] = accentsOut[x];
-        }
+    $.each($(`input[name='campo'][value*='${texto_pesquisa}']`), (id, linha) => {
+        console.log('invisivel');
+        $(linha.parentNode).removeClass('invisivel')
+    })
+
+    if (texto_pesquisa === '') {
+        $.each($('.invisivel'), (id, linha) => {
+            $(linha).removeClass('invisivel')
+        })
+    } else {
+        $.each($(`input[name='campo']:not([value*='${texto_pesquisa}'])`), (id, campo) => {
+            $(campo.parentNode).addClass('invisivel')
+        })
     }
-    return str.join('');
 }
