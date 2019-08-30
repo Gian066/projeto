@@ -1,3 +1,5 @@
+
+// Edita no html e no banco de dados um certo campo
 function editar_campos(id) {
     let campo = document.getElementById(id).children['campo']
     let icone = document.getElementById(id).children['icons'].children['edit']
@@ -24,17 +26,7 @@ function editar_campos(id) {
     }
 }
 
-// function deletar_linha(id) {
-//     if (confirm("Você quer realmente apagar?")) {
-//         document.getElementById(id).remove()
-//         $.ajax({
-//             url: "deletar.php?id='" + id + "'",
-//             type: 'GET'
-//         });
-//     }
-
-// }
-
+// Deleta no html e no banco de dados os dados selecionados
 function del_selecionados() {
     let lista = document.getElementById('lista').children[1].children
     if (confirm("Você quer realmente excluir os campos selecionados?")) {
@@ -48,21 +40,12 @@ function del_selecionados() {
             });
         });
     }
+
+    $('#del_selecionados').text("Excluir")
 }
 
-function inserir_linha() {
-    const nome = $("#nova_disciplina")[0].value.toUpperCase()
 
-    if (nome.length > 0) {
-        $.ajax({
-            method: 'POST',
-            url: "inserir.php",
-            data: { nome: nome }
-        })
-        $('#sucesso').click()
-    }
-}
-
+// Filtra lista em relação a barra de pesquisa
 function filtrar_lista(texto_pesquisa) {
     texto_pesquisa = texto_pesquisa.toUpperCase()
 

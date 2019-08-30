@@ -1,3 +1,5 @@
+
+/* Barra de pesquisa */
 #barra_pesquisa {
     margin-left: 20%;
     margin-right: 20%;
@@ -9,6 +11,8 @@
     text-align: center;
 }
 
+/* Lista */
+
 #lista {
     margin: 40px 20px;
 }
@@ -18,6 +22,27 @@
     margin: 0px;
     margin-bottom: 20px;
 }
+
+.input-lista {
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    padding: none;
+    width: calc(100% - 50px);
+    background-color: transparent;
+    text-transform: uppercase;
+  }
+
+  .list-group-item input, .icons-lista {
+    display: inline-block;
+  }
+
+  #subtitulo {
+    display:inline-block;
+}
+  
+
+/* Icones */
 
 
 @keyframes editar_p_salvar {
@@ -40,40 +65,12 @@
     color: rgb(192, 51, 51);
 }
 
-.input-lista {
-  border: none;
-  font-family: inherit;
-  font-size: inherit;
-  padding: none;
-  width: calc(100% - 50px);
-  background-color: transparent;
-  text-transform: uppercase;
-}
-
-.list-group-item input, .icons-lista {
-  display: inline-block;
-}
-
 div.icons-lista {
     float: right;
     width: 30px;
 }
 
-#subtitulo {
-    display:inline-block;
-}
-
-@media (min-width: 375px) and (max-width: 667px){
-    /* Para usuarios iphone */
-    #lista ul{
-        font-size: 13px;
-    }
-}
-
-.invisivel {
-    display: none;
-    visibility: hidden;
-}
+/* Modal */
 
 #form_adicionar {
     position: fixed;
@@ -83,7 +80,31 @@ div.icons-lista {
     width: 800px;
 }
 
-.alert-success {
+.modal-body input {
+    width: 100%; 
+    text-transform: uppercase;
+}
+
+/* Mensagens de sucesso e erro */
+
+.alert {
     width: 80%;
     left: 10%;
+}
+
+/* Geral */
+
+.invisivel {
+    display: none;
+    visibility: hidden;
+}
+
+
+/* Aparelhos-Moveis */
+
+@media (min-width: 375px) and (max-width: 667px){
+    /* Para usuarios iphone */
+    #lista ul{
+        font-size: 13px;
+    }
 }

@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/default.css">
-    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="stylesheet" href="estilos.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
@@ -30,43 +30,50 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <div class="container-fluid">
-                        <label for="">Insira o nome da nova disciplina:</label><br>
-                        <input id="nova_disciplina" style="width: 100%; text-transform: uppercase;" type="text" placeholder="Disciplina" require>
+                <form action="inserir.php" method="post" class="">
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <label for="">Insira o nome da nova disciplina:</label><br>
+                            <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" name="nome" placeholder="Disciplina" required>
+                        </div>
                     </div>
-                </div>
-                <form action="#" method="post" class="">
-                    <input name="sucesso" type="hidden" value="1">
-                    <button id='sucesso' class='invisivel' type="submit"></button>
-                </form>
 
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary" data-dismiss="modal" onclick='inserir_linha()'>Salvar</button>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 
-    <!-- search bar -->
+    <!-- Barra de pesquisa -->
     <div id="barra_pesquisa">
         <input value="" id="pesquisa" class="form-control" type="text" placeholder="Pesquisar" aria-label="Search">
     </div>
 
-    <!-- Sucesso -->
+    <!-- Mensagens de sucesso e erro -->
     <?php
-    if(isset($_POST['sucesso'])) {
+    session_start();
+    if (isset($_SESSION['nova_entrada'])) {
         echo '
         <div class="alert alert-success" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             Disciplina criada com sucesso!
         </div>';
+        unset($_SESSION['nova_entrada']);
+    }
+    if (isset($_SESSION['entrada_duplicada'])) {
+        echo '
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            Disciplina já existente no banco de dados!
+        </div>';
+        unset($_SESSION['entrada_duplicada']);
     }
     ?>
 
     <div id="lista" class="card">
-        <!-- <img class="card-img-top" data-src="holder.js/100x180/?text=Image cap" alt="Card image cap"> -->
         <div class="card-body">
             <h4 class="card-title"><strong>Disciplinas</strong></h4>
             <p id="subtitulo" class="card-text ">Listas das Disciplinas</p>
@@ -112,6 +119,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="../js/ajudantes.js"></script>
+
+    <!-- Funções do JQuery -->
     <script>
         $('#pesquisa').on('input', () => {
             filtrar_lista($("#pesquisa")[0].value)
@@ -119,7 +128,7 @@
 
         $('input[type="checkbox"]').on('input', () => {
             const n = $(":checkbox:checked").length
-            let texto = "Deletar"
+            let texto = "Excluir"
 
             if (n > 0) texto = "Excluir " + n + " disciplina(s)"
 
@@ -131,12 +140,21 @@
             var modal = $(this);
         });
 
-        window.setTimeout(function() {
+        window.setTimeout(() => {
             $(".alert").fadeTo(500, 0).slideUp(500, function() {
                 $(this).remove();
             });
         }, 4000);
+
+        //         $('li.list-group-item').each(function(id) {
+
+        //   var back = ["gray","white"];
+        //   var rand = back[Math.floor(Math.random() * back.length)];
+        //   $(this).css('background',rand);
+        // });
     </script>
+
+
 </body>
 
 </html>
