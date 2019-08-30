@@ -5,8 +5,9 @@ $con = new Conexao();
 session_start();
 
 $nome = $_POST['nome'];
+$siape = $_POST['siape'];
 
-$sql = "SELECT * FROM disciplina WHERE nome = '$nome'";
+$sql = "SELECT * FROM professor WHERE nome = '$nome' or siape = '$siape'";
 $result = $con->executar($sql);
 
 if ($result->num_rows > 0) {
@@ -15,7 +16,7 @@ if ($result->num_rows > 0) {
     die;
 }
 
-$sql =  "INSERT INTO disciplina (nome) VALUES ('$nome')";
+$sql =  "INSERT INTO professor (nome,siape) VALUES ('$nome','$siape')";
 $con->executar($sql);
 
 $_SESSION['nova_entrada'] = 1;

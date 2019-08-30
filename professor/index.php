@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Disciplina</title>
+    <title>Professor</title>
 
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/default.css">
@@ -25,7 +25,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Nova Disciplina</h5>
+                    <h5 class="modal-title">Novo Professor</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -33,8 +33,10 @@
                 <form action="inserir.php" method="post" class="">
                     <div class="modal-body">
                         <div class="container-fluid">
-                            <label for="">Insira o nome da nova disciplina:</label><br>
-                            <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" name="nome" placeholder="Disciplina" required>
+                            <label for="">Insira o nome da novo professor:</label><br>
+                            <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" name="nome" placeholder="Professor" required>
+                            <br><label for="">Insira o Siape do professor:</label><br>
+                            <input min=0 type="number" class="form-control" name="siape" placeholder="Siape" required>
                         </div>
                     </div>
 
@@ -75,10 +77,10 @@
 
     <div id="lista" class="card">
         <div class="card-body">
-            <h4 class="card-title"><strong>Disciplinas</strong></h4>
-            <p id="subtitulo" class="card-text ">Listas das Disciplinas</p>
+            <h4 class="card-title"><strong>Professores</strong></h4>
+            <p id="subtitulo" class="card-text ">Listas das Professores</p>
             <br>
-            <a name="" id="inserir_linha" class="btn btn-primary" href="#" role="button" data-toggle="modal" data-target="#modelId">Nova Disciplina</a>
+            <a name="" id="inserir_linha" class="btn btn-primary" href="#" role="button" data-toggle="modal" data-target="#modelId">Novo Professor</a>
             <a id="del_selecionados" style="float: right;" class="btn btn-danger" href="#" role="button" onclick='del_selecionados()'>Excluir</a>
 
         </div>
@@ -88,21 +90,23 @@
             include "../banco.php";
             $con = new Conexao();
 
-            $result = $con->buscar("disciplina");
+            $result = $con->buscar("professor");
             $resultados = [];
 
             while ($linha = $result->fetch_array()) {
                 $id = $linha["id"];
                 $nome = $linha["nome"];
+                $siape = $linha["siape"];
 
                 echo "
                     <li id='{$id}' class='list-group-item'>
                         <input type='checkbox' name='checkbox'>
-                        <input name='campo'onkeyup='this.value = this.value.toUpperCase();' class='input-lista' type='text' value='{$nome}' id='{$id}' disabled>
+                        <input name='nome'onkeyup='this.value = this.value.toUpperCase();' class='input-lista' type='text' value='{$nome}'  disabled>
                         <div name='icons' class='icons-lista'>                        
                             <i name='edit' class='icon-lista material-icons edit-icon' onclick='editar_campos({$id})'>edit</i>
                             
                         </div>
+                        <input name='siape' onkeyup='this.value = this.value.toUpperCase();' class='input-lista' type='text' value='{$siape}' disabled>                        
                    
                     </li>";
                 // <i name='delete' class='icon-lista material-icons delete-icon' onclick='deletar_linha({$id})' >delete</i>
@@ -119,6 +123,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="scripts.js"></script>
     <script src="../js/ajudantes.js"></script>
+    
 
     <!-- Funções do JQuery -->
     <script>
@@ -130,7 +135,7 @@
             const n = $(":checkbox:checked").length
             let texto = "Excluir"
 
-            if (n > 0) texto = "Excluir " + n + " disciplina(s)"
+            if (n > 0) texto = "Excluir " + n + " professor(es)"
 
             $('#del_selecionados').text(texto)
         })

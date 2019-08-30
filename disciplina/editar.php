@@ -2,10 +2,10 @@
     include '../banco.php';
 
     $nome = $_POST['nome'];
+    $id = $_POST['id'];
 
-
-    $con = conexao();
+    $con = new Conexao();
     $sql = "UPDATE disciplina SET nome= '$nome' WHERE id = $id";
-    executar($con, $sql);
+    $con->executar($sql);
     
 ?>

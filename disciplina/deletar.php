@@ -1,6 +1,6 @@
 <?php 
     include '../banco.php';
 
-    $con = conexao();
-    deletar($con, "disciplina", $_GET['id']);
+    $con = new Conexao();
+    $con->deletar("disciplina", $_GET['id']);
 ?>
