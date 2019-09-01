@@ -2,9 +2,9 @@
 function del_selecionados() {
     let lista = document.getElementById('lista').children[1].children
     if (confirm("Você quer realmente excluir os campos selecionados?")) {
-        $.each($("input:checked"), (id_campo, campo) => {
-            id = campo.parentNode.id
-            campo.parentNode.remove()
+        $.each($("input:checked"), (_id, nome) => {
+            id = nome.parentNode.id
+            nome.parentNode.remove()
             $.ajax({
                 url: "deletar.php?id='" + id + "'",
                 type: 'GET'
@@ -20,7 +20,7 @@ function del_selecionados() {
 function filtrar_lista(texto_pesquisa) {
     texto_pesquisa = texto_pesquisa.toUpperCase()
 
-    $.each($(`input[name='campo'][value*='${texto_pesquisa}']`), (id, linha) => {
+    $.each($(`input[name='nome'][value*='${texto_pesquisa}']`), (id, linha) => {
         console.log('invisivel');
         $(linha.parentNode).removeClass('invisivel')
     })
@@ -30,8 +30,8 @@ function filtrar_lista(texto_pesquisa) {
             $(linha).removeClass('invisivel')
         })
     } else {
-        $.each($(`input[name='campo']:not([value*='${texto_pesquisa}'])`), (id, campo) => {
-            $(campo.parentNode).addClass('invisivel')
+        $.each($(`input[name='nome']:not([value*='${texto_pesquisa}'])`), (id, nome) => {
+            $(nome.parentNode).addClass('invisivel')
         })
     }
 }

@@ -61,7 +61,7 @@
         echo '
         <div class="alert alert-success" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            Disciplina criada com sucesso!
+            Professor inserido com sucesso!
         </div>';
         unset($_SESSION['nova_entrada']);
     }
@@ -69,7 +69,7 @@
         echo '
         <div class="alert alert-danger" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            Disciplina já existente no banco de dados!
+            Nome de professor ou siape já existente no banco de dados!
         </div>';
         unset($_SESSION['entrada_duplicada']);
     }
@@ -78,7 +78,7 @@
     <div id="lista" class="card">
         <div class="card-body">
             <h4 class="card-title"><strong>Professores</strong></h4>
-            <p id="subtitulo" class="card-text ">Listas das Professores</p>
+            <p id="subtitulo" class="card-text ">Lista de Professores</p>
             <br>
             <a name="" id="inserir_linha" class="btn btn-primary" href="#" role="button" data-toggle="modal" data-target="#modelId">Novo Professor</a>
             <a id="del_selecionados" style="float: right;" class="btn btn-danger" href="#" role="button" onclick='del_selecionados()'>Excluir</a>
@@ -106,10 +106,9 @@
                             <i name='edit' class='icon-lista material-icons edit-icon' onclick='editar_campos({$id})'>edit</i>
                             
                         </div>
-                        <input name='siape' onkeyup='this.value = this.value.toUpperCase();' class='input-lista' type='text' value='{$siape}' disabled>                        
+                        <span class='siape'>Siape: <input name='siape' onkeyup='this.value = this.value.toUpperCase();' class='input-lista' type='text' value='{$siape}' disabled></span>
                    
                     </li>";
-                // <i name='delete' class='icon-lista material-icons delete-icon' onclick='deletar_linha({$id})' >delete</i>
             }
             ?>
 
@@ -123,7 +122,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="scripts.js"></script>
     <script src="../js/ajudantes.js"></script>
-    
+
 
     <!-- Funções do JQuery -->
     <script>
@@ -140,23 +139,11 @@
             $('#del_selecionados').text(texto)
         })
 
-        $('#exampleModal').on('show.bs.modal', event => {
-            var button = $(event.relatedTarget);
-            var modal = $(this);
-        });
-
         window.setTimeout(() => {
             $(".alert").fadeTo(500, 0).slideUp(500, function() {
                 $(this).remove();
             });
         }, 4000);
-
-        $('li.list-group-item').each(function(id) {
-
-            var back = ["#f5f9ff", "white"];
-            var rand = back[id % 2];
-            $(this).css('background', rand);
-        });
     </script>
 
 

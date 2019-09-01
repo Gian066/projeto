@@ -1,6 +1,6 @@
 function editar_campos(id) {
     let nome = document.getElementById(id).children['nome']
-    let siape = document.getElementById(id).children['siape']
+    let siape = document.getElementById(id).children[3].children['siape']
     let icone = document.getElementById(id).children['icons'].children['edit']
 
     if (icone.innerText == "edit") {
@@ -19,11 +19,15 @@ function editar_campos(id) {
 
         let novoNome = nome.value
         let novoSiape = siape.value
-        
+
         $.ajax({
             method: 'POST',
             url: 'editar.php',
-            data: { id: id, nome: novoNome, siape: novoSiape }
+            data: {
+                id: id,
+                nome: novoNome,
+                siape: novoSiape
+            }
         });
     }
 }

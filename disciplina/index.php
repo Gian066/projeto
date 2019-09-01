@@ -76,7 +76,7 @@
     <div id="lista" class="card">
         <div class="card-body">
             <h4 class="card-title"><strong>Disciplinas</strong></h4>
-            <p id="subtitulo" class="card-text ">Listas das Disciplinas</p>
+            <p id="subtitulo" class="card-text ">Lista das Disciplinas</p>
             <br>
             <a name="" id="inserir_linha" class="btn btn-primary" href="#" role="button" data-toggle="modal" data-target="#modelId">Nova Disciplina</a>
             <a id="del_selecionados" style="float: right;" class="btn btn-danger" href="#" role="button" onclick='del_selecionados()'>Excluir</a>
@@ -97,15 +97,14 @@
 
                 echo "
                     <li id='{$id}' class='list-group-item'>
-                        <input type='checkbox' name='checkbox'>
-                        <input name='campo'onkeyup='this.value = this.value.toUpperCase();' class='input-lista' type='text' value='{$nome}' id='{$id}' disabled>
+                        <input type='checkbox' name='checkbox' >
+                        <input name='nome'onkeyup='this.value = this.value.toUpperCase();' class='input-lista' type='text' value='{$nome}' disabled>
                         <div name='icons' class='icons-lista'>                        
                             <i name='edit' class='icon-lista material-icons edit-icon' onclick='editar_campos({$id})'>edit</i>
                             
                         </div>
                    
                     </li>";
-                // <i name='delete' class='icon-lista material-icons delete-icon' onclick='deletar_linha({$id})' >delete</i>
             }
             ?>
 
@@ -145,13 +144,6 @@
                 $(this).remove();
             });
         }, 4000);
-
-        $('li.list-group-item').each(function(id) {
-
-            var back = ["#f5f9ff", "white"];
-            var rand = back[id % 2];
-            $(this).css('background', rand);
-        });
     </script>
 
 

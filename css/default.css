@@ -8,7 +8,144 @@ body {
     background-color: #4285f4;
 }
 
-.dropdown-menu, .dropdown-menu a {
+.dropdown-menu,
+.dropdown-menu a {
     background-color: #4285f4;
     color: white;
+}
+
+/* Barra de pesquisa */
+#barra_pesquisa {
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+#pesquisa {
+    text-align: center;
+}
+
+/* Lista */
+
+
+#lista {
+    margin: 40px 20px;
+}
+
+#lista ul {
+    padding: 0px 20px;
+    margin: 0px;
+    margin-bottom: 20px;
+}
+
+.input-lista {
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    width: calc(100% - 70px);
+    background-color: transparent;
+    text-transform: uppercase;
+    transition: 300ms;
+    color: rgb(104, 104, 104);
+    outline: none;
+
+}
+
+.list-group-item input,
+.icons-lista {
+    display: inline-block;
+}
+
+/* Icones */
+
+
+@keyframes editar_p_salvar {
+    0% {
+        color: transparent;
+    }
+
+    100% {
+        color: #269e46;
+    }
+}
+
+@keyframes salvar_p_editar {
+    0% {
+        color: transparent;
+    }
+
+    100% {
+        color: black;
+    }
+}
+
+.icon-lista {
+    margin-right: 0px;
+    animation-duration: 0.7s;
+    cursor: pointer;
+}
+
+.delete-icon {
+    color: rgb(192, 51, 51);
+}
+
+div.icons-lista {
+    float: right;
+    width: 30px;
+}
+
+/* Modal */
+
+#form_adicionar {
+    position: fixed;
+    z-index: 2;
+    margin-top: 20vh;
+    margin-left: calc(50% - 400px);
+    width: 800px;
+}
+
+.modal-body input {
+    width: 100%;
+    text-transform: uppercase;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    visibility: hidden;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+    /* Firefox */
+}
+
+/* Mensagens de sucesso e erro */
+
+.alert {
+    width: 80%;
+    left: 10%;
+}
+
+/* Geral */
+
+.invisivel {
+    display: none;
+    visibility: hidden;
+}
+
+
+/* Aparelhos-Moveis */
+
+@media (min-width: 375px) and (max-width: 667px) {
+
+    /* Para usuarios iphone */
+    #lista ul {
+        font-size: 13px;
+    }
 }
