@@ -21,7 +21,6 @@ function filtrar_lista(texto_pesquisa) {
     texto_pesquisa = texto_pesquisa.toUpperCase()
 
     $.each($(`input[name='nome'][value*='${texto_pesquisa}']`), (id, linha) => {
-        console.log('invisivel');
         $(linha.parentNode).removeClass('invisivel')
     })
 
@@ -34,4 +33,6 @@ function filtrar_lista(texto_pesquisa) {
             $(nome.parentNode).addClass('invisivel')
         })
     }
+
+    $.each($(''))
 }

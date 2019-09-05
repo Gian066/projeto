@@ -4,8 +4,8 @@ $con = new Conexao();
 
 session_start();
 
-$nome = $_POST['nome'];
-$siape = $_POST['siape'];
+$nome = $_POST['nome_modal'];
+$siape = $_POST['siape_modal'];
 
 $sql = "SELECT * FROM professor WHERE nome = '$nome' or siape = '$siape'";
 $result = $con->executar($sql);

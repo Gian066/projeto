@@ -78,8 +78,8 @@
 
     <div id="lista" class="card">
         <div class="card-body">
-            <h4 class="card-title"><strong>PPC</strong></h4>
-            <p id="subtitulo" class="card-text ">Lista dos PPC's</p>
+            <h4 class="card-title"><strong>Disciplinas</strong></h4>
+            <p id="subtitulo" class="card-text ">Lista das Disciplinas</p>
             <br>
             <a name="" id="inserir_linha" class="btn btn-primary" href="#" role="button" data-toggle="modal" data-target="#modelId">Nova Disciplina</a>
             <a id="del_selecionados" style="float: right;" class="btn btn-danger" href="#" role="button" onclick='del_selecionados()'>Excluir</a>
@@ -105,17 +105,17 @@
                 echo "
                     <li id='{$id}' class='list-group-item'>
                         <input type='checkbox' name='checkbox' >
-                        <span class='nome-lista'>$nome</span><br>
+                        <span class='nome-lista'>$nome $formacao - $ano</span><br>
                         <div name='icons' class='icons-lista'>                        
                             <i name='edit' class='icon-lista material-icons edit-icon' onclick='editar_campos(this, [$id, $nome])'>edit</i>
                             
                         </div>
                         <span class='info-compl'>Ano: $ano </span> <br>
                         <span class='info-compl'>Duração: $duracao </span> <br>
-                        <span class='info-compl'>Duração da aula: $aula_duracao </span> <br>
-                        <span class='info-compl'>Formação: $formacao </span> <br>
+                        <span class='info-compl'>Duração da aula: $duracao </span> <br>
                         <span class='info-compl'>Aulas por semana: $aula_semana </span> <br>
-                        <span class='info-compl'>Turma: $turma </span> <br>
+                        <span class='info-compl'>Nome: $nome </span> <br>
+                        <span class='info-compl'>Formação: $formacao </span> <br>
                     </li>";
             }
             ?>

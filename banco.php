@@ -1,11 +1,11 @@
 <?php
 
 class Conexao{
-    private $con;
+    public $con;
     public function __construct(){
         $servername = "localhost";
         $username = "root";
-        $db = "cargahoraria";
+        $db = "carga";
 
         $this->con = new mysqli($servername, $username, "", $db);
         $this->con->set_charset("utf8");

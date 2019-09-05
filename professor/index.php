@@ -34,9 +34,9 @@
                     <div class="modal-body">
                         <div class="container-fluid">
                             <label for="">Insira o nome da novo professor:</label><br>
-                            <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" name="nome" placeholder="Professor" required>
+                            <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" name="nome_modal" placeholder="Professor" required>
                             <br><label for="">Insira o Siape do professor:</label><br>
-                            <input min=0 type="number" class="form-control" name="siape" placeholder="Siape" required>
+                            <input min=0 type="number" class="form-control" name="siape_modal" placeholder="Siape" required>
                         </div>
                     </div>
 
