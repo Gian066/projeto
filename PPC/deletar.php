@@ -2,5 +2,4 @@
     include '../banco.php';
 
     $con = new Conexao();
-    $con->deletar("disciplina", $_GET['id']);
-?>
+    $con->deletar('ppc', $_GET['id']);

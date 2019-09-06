@@ -4,9 +4,11 @@ $con = new Conexao();
 
 session_start();
 
-$nome = $_POST['nome_modal'];
+$ano = $_POST['ano'];
+$nome = $_POST['nome'];
+$formacao = $_POST['formacao'];
 
-$sql = "SELECT * FROM disciplina WHERE nome = '$nome'";
+$sql = "SELECT * FROM ppc WHERE nome = '$nome' and ano = $ano and formacao = '$formacao'";
 $result = $con->executar($sql);
 
 if ($result->num_rows > 0) {
@@ -15,7 +17,7 @@ if ($result->num_rows > 0) {
     die;
 }
 
-$sql =  "INSERT INTO disciplina (nome) VALUES ('$nome')";
+$sql =  "INSERT INTO ppc (ano, nome, formacao) VALUES ($ano, '$nome', '$formacao')";
 $con->executar($sql);
 
 $_SESSION['nova_entrada'] = 1;

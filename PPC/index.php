@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Disciplina</title>
+    <title>PPC</title>
 
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/default.css">
@@ -20,30 +20,32 @@
     include "../navbar.php";
     ?>
 
-    <!-- Modal cadastro -->
-    <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <!-- Modal -->
+    <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitle" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Nova Disciplina</h5>
+                    <h5 class="modal-title">Novo PPC</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="inserir.php" method="post" class="">
+                <form action="inserir.php" method="post" class="form-modal">
                     <div class="modal-body">
-                        <div class="container-fluid">
-                            <label for="">Insira o nome da nova disciplina:</label><br>
-                            <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" name="nome_modal" placeholder="Disciplina" required>
-                            <label for="">Insira o nome da nova disciplina:</label><br>
-                            <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" name="nome_modal" placeholder="Disciplina" required>
-                        
+                        <div class="container-fluid data-modal">
+                            <label for="">Insira o ano do PPC:</label><br>
+                            <input min='2010' max='2100' type='number' class="form-control" name="ano" placeholder="Ex.: 2018" required>
+                            <label for="">Insira o nome do PPC:</label><br>
+                            <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" name="nome" placeholder="Ex.: INFORMATICA" required>
+                            <label for="">Insira a formação do PPC:</label><br>
+                            <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" name="formacao" placeholder="Ex.: INTEGRADO" required>
+                            <input name='id' hidden>
                         </div>
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-primary">Salvar</button>
+                        <button type="button" class="btn-modal btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn-modal btn btn-primary">Salvar</button>
                     </div>
                 </form>
             </div>
@@ -62,7 +64,7 @@
         echo '
         <div class="alert alert-success" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            Disciplina criada com sucesso!
+            PPC criado com sucesso!
         </div>';
         unset($_SESSION['nova_entrada']);
     }
@@ -70,7 +72,7 @@
         echo '
         <div class="alert alert-danger" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            Disciplina já existente no banco de dados!
+            PPC já existente no banco de dados!
         </div>';
         unset($_SESSION['entrada_duplicada']);
     }
@@ -78,10 +80,9 @@
 
     <div id="lista" class="card">
         <div class="card-body">
-            <h4 class="card-title"><strong>Disciplinas</strong></h4>
-            <p id="subtitulo" class="card-text ">Lista das Disciplinas</p>
-            <br>
-            <a name="" id="inserir_linha" class="btn btn-primary" href="#" role="button" data-toggle="modal" data-target="#modelId">Nova Disciplina</a>
+            <h4 class="card-title"><strong>PPCs</strong></h4>
+            <p id="subtitulo" class="card-text ">Lista dos PPCs</p><br>
+            <a name="" id="inserir_linha" class="btn btn-primary" href="#" role="button" data-toggle="modal" data-target="#modelId">Novo PPC</a>
             <a id="del_selecionados" style="float: right;" class="btn btn-danger" href="#" role="button" onclick='del_selecionados()'>Excluir</a>
 
         </div>
@@ -97,8 +98,6 @@
             while ($linha = $result->fetch_array()) {
                 $id = $linha["id"];
                 $ano = $linha["ano"];
-                $duracao = $linha["duracao"];
-                $aula_semana = $linha["aula_semana"];
                 $nome = $linha["nome"];
                 $formacao = $linha["formacao"];
 
@@ -107,13 +106,10 @@
                         <input type='checkbox' name='checkbox' >
                         <span class='nome-lista'>$nome $formacao - $ano</span><br>
                         <div name='icons' class='icons-lista'>                        
-                            <i name='edit' class='icon-lista material-icons edit-icon' onclick='editar_campos(this, [$id, $nome])'>edit</i>
+                            <i name='edit' class='icon-lista material-icons edit-icon' onclick='editar_campos(this, {id: $id, ano: {$ano}, nome: `{$nome}`, formacao:`{$formacao}`})' data-toggle='modal' data-target='#modelId'>edit</i>
                             
                         </div>
                         <span class='info-compl'>Ano: $ano </span> <br>
-                        <span class='info-compl'>Duração: $duracao </span> <br>
-                        <span class='info-compl'>Duração da aula: $duracao </span> <br>
-                        <span class='info-compl'>Aulas por semana: $aula_semana </span> <br>
                         <span class='info-compl'>Nome: $nome </span> <br>
                         <span class='info-compl'>Formação: $formacao </span> <br>
                     </li>";
@@ -141,7 +137,7 @@
             const n = $(":checkbox:checked").length
             let texto = "Excluir"
 
-            if (n > 0) texto = "Excluir " + n + " disciplina(s)"
+            if (n > 0) texto = "Excluir " + n + " PPC(s)"
 
             $('#del_selecionados').text(texto)
         })
@@ -150,6 +146,15 @@
             var button = $(event.relatedTarget);
             var modal = $(this);
         });
+
+        $('#inserir_linha').on('click', () => {
+            $.each($('.data-modal')
+                .children()
+                .filter('input'), (id, input) => {
+                    input.value = ''
+                })
+            $('.form-modal')[0].action = 'inserir.php'
+        })
 
         window.setTimeout(() => {
             $(".alert").fadeTo(500, 0).slideUp(500, function() {

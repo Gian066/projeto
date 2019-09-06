@@ -1,11 +1,13 @@
-<?php 
-    include '../banco.php';
+<?php
+include '../banco.php';
 
-    $nome = $_POST['nome'];
-    $id = $_POST['id'];
+$ano = $_POST['ano'];
+$id = $_POST['id'];
+$nome = $_POST['nome'];
+$formacao = $_POST['formacao'];
 
-    $con = new Conexao();
-    $sql = "UPDATE disciplina SET nome= '$nome' WHERE id = $id";
-    $con->executar($sql);
-    
-?>
+
+$con = new Conexao();
+$sql = "UPDATE ppc SET nome= '$nome', ano = '$ano', formacao = '$formacao'  WHERE id = $id";
+$con->executar($sql);
+header('location: index.php');

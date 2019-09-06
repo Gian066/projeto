@@ -15,12 +15,16 @@ function del_selecionados() {
     $('#del_selecionados').text("Excluir")
 }
 
+jQuery.expr[':'].contains = function (a, i, m) {
+    return jQuery(a).text().toUpperCase()
+        .indexOf(m[3].toUpperCase()) >= 0;
+};
+
 
 // Filtra lista em relação a barra de pesquisa
 function filtrar_lista(texto_pesquisa) {
-    texto_pesquisa = texto_pesquisa.toUpperCase()
 
-    $.each($(`input[name='nome'][value*='${texto_pesquisa}']`), (id, linha) => {
+    $.each($(`.nome-lista:contains(${texto_pesquisa})`), (id, linha) => {
         $(linha.parentNode).removeClass('invisivel')
     })
 
@@ -29,7 +33,7 @@ function filtrar_lista(texto_pesquisa) {
             $(linha).removeClass('invisivel')
         })
     } else {
-        $.each($(`input[name='nome']:not([value*='${texto_pesquisa}'])`), (id, nome) => {
+        $.each($(`.nome-lista:not(:contains(${texto_pesquisa}))`), (id, nome) => {
             $(nome.parentNode).addClass('invisivel')
         })
     }

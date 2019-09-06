@@ -44,16 +44,10 @@ body {
 }
 
 .nome-lista {
-    text-transform: italic;
     transition: 300ms;
     color: rgb(104, 104, 104);
     outline: none;
 
-}
-
-.list-group-item input,
-.icons-lista {
-    display: inline-block;
 }
 
 .list-group-item {
@@ -67,7 +61,19 @@ body {
     -webkit-box-shadow: 10px 10px 34px -6px rgba(0, 0, 0, 0.07);
     -moz-box-shadow: 10px 10px 34px -6px rgba(0, 0, 0, 0.07);
     box-shadow: 10px 10px 34px -6px rgba(0, 0, 0, 0.07);
+}
+
+.list-group-item:hover>span {
     color: black;
+}
+
+.info-compl{
+    font-size: 13px;
+    font-style: italic;
+    margin-left: 20px;
+    color: rgb(104, 104, 104);
+    transition: 300ms;
+    top: -5px;
 }
 
 
