@@ -11,8 +11,8 @@ class Conexao{
         $this->con->set_charset("utf8");
     }
 
-    function buscar($tabela){
-        $sql = "SELECT * FROM $tabela WHERE 1 ORDER BY nome";
+    function buscar($tabela, $order = 'nome'){
+        $sql = "SELECT * FROM $tabela WHERE 1 ORDER BY $order";
         return $this->con->query($sql);
     }
 

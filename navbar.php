@@ -16,6 +16,10 @@
         <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item waves-effect waves-light" href="http://<?php echo $_SERVER["SERVER_NAME"]; ?>/projeto/professor">Professor</a>
           <a class="dropdown-item waves-effect waves-light" href="http://<?php echo $_SERVER["SERVER_NAME"]; ?>/projeto/disciplina">Disciplina</a>
+          <a class="dropdown-item waves-effect waves-light" href="http://<?php echo $_SERVER["SERVER_NAME"]; ?>/projeto/ppc">PPC</a>
+          <a class="dropdown-item waves-effect waves-light" href="http://<?php echo $_SERVER["SERVER_NAME"]; ?>/projeto/curso">Curso</a>
+
+
         </div>
       </li>
     </ul>
