@@ -51,15 +51,17 @@
                                     }      
                                 ?>
                             </select>
+                            
+                            <label for="">Ano de ingresso do curso</label><br>
 
-                            <label for="">Vigência do curso</label><br>
                             <select name="ingresso" class='form-control'>
                                 <?php 
                                 for($ano = date("Y") - 10; $ano < date("Y") + 2; $ano++) echo "<option value='{$ano}'>{$ano}</option>";
                                 ?>
                             </select>
 
-                            <label for="">Ano de ingresso do curso</label><br>
+                            <label for="">Vigência do curso</label><br>
+
                             <select name="vigencia" class='form-control'>
                                 <?php 
                                 for($ano = date("Y") - 5; $ano < date("Y") + 10; $ano++) echo "<option value='{$ano}'>{$ano}</option>";
